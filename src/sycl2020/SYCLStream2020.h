@@ -12,7 +12,7 @@
 
 #include "Stream.h"
 
-#include <sycl/sycl.hpp>
+#include <sycl/CL/sycl.hpp>
 
 #define IMPLEMENTATION_STRING "SYCL 2020"
 
