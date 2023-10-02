@@ -315,6 +315,35 @@ It used to work but now it is not building!
 ## OpenCL
 - Haven't tested it all, but removed the need for a function to extract the package version.
 
+
+## TBB
+```
+Build:
+==========
+$ spack install babelstream@option_for_vec%gcc@13.1.0 +tbb partitioner=auto
+Run:
+==========
+$ ./bin/tbb-stream --arraysize $((2**27))
+Results:
+==========
+BabelStream
+Version: 4.0
+Implementation: TBB
+Running kernels 100 times
+Precision: double
+Array size: 1073.7 MB (=1.1 GB)
+Total size: 3221.2 MB (=3.2 GB)
+Using TBB partitioner: auto_partitioner
+Backing storage typeid: Pd
+Function    MBytes/sec  Min (sec)   Max         Average     
+Copy        90440.436   0.02374     0.02857     0.02600     
+Mul         88813.645   0.02418     0.02863     0.02614     
+Add         100313.147  0.03211     0.03852     0.03498     
+Triad       101585.688  0.03171     0.03853     0.03471     
+Dot         134336.843  0.01599     0.02066     0.01840 
+```
+
+
 # TODO : 
 - Download Manually the PGI compiler and test it
 
