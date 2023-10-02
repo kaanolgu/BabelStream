@@ -1,3 +1,8 @@
+# Problems Solved since the submission
+- STDdata fixed
+- ACC is fixed
+
+-----------------------------------------------
 First do: 
 ```
 module load gcc
@@ -314,6 +319,67 @@ It used to work but now it is not building!
 
 ## OpenCL
 - Haven't tested it all, but removed the need for a function to extract the package version.
+
+
+
+## TBB
+```
+Build:
+==========
+$ spack install babelstream@option_for_vec%gcc@13.1.0 +tbb partitioner=auto
+Run:
+==========
+$ ./bin/tbb-stream --arraysize $((2**27))
+Results:
+==========
+BabelStream
+Version: 4.0
+Implementation: TBB
+Running kernels 100 times
+Precision: double
+Array size: 1073.7 MB (=1.1 GB)
+Total size: 3221.2 MB (=3.2 GB)
+Using TBB partitioner: auto_partitioner
+Backing storage typeid: Pd
+Function    MBytes/sec  Min (sec)   Max         Average     
+Copy        90440.436   0.02374     0.02857     0.02600     
+Mul         88813.645   0.02418     0.02863     0.02614     
+Add         100313.147  0.03211     0.03852     0.03498     
+Triad       101585.688  0.03171     0.03853     0.03471     
+Dot         134336.843  0.01599     0.02066     0.01840 
+```
+
+## std-data
+https://github.com/UoB-HPC/BabelStream/pull/165 this fixes the issue. So in order to make it run we need to change the 
+
+`git: github.com/UOB-HPC/Babelstream.git` to `git : github.com/kaanolgu/Babelstream.git`so that it gets the changes I made to the CMake file.
+
+The branch is called `update_stddata` or `stddata` in my repository 
+
+```
+Build:
+==========
+$ spack install babelstream@stddata%gcc@13.1.0 +stddata
+Run:
+==========
+./bin/std-data-stream --arraysize $((2**27))
+
+Results:
+==========
+BabelStream
+Version: 4.0
+Implementation: STD (data-oriented)
+Running kernels 100 times
+Precision: double
+Array size: 1073.7 MB (=1.1 GB)
+Total size: 3221.2 MB (=3.2 GB)
+Function    MBytes/sec  Min (sec)   Max         Average     
+Copy        84800.789   0.02532     0.04282     0.03101     
+Mul         82584.055   0.02600     0.04181     0.03126     
+Add         91190.829   0.03532     0.05735     0.04236     
+Triad       93170.046   0.03457     0.05681     0.04421     
+Dot         122850.656  0.01748     0.03015     0.02326   
+```
 
 # TODO : 
 - Download Manually the PGI compiler and test it
