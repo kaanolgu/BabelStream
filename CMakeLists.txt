@@ -76,6 +76,9 @@ set(CXX_EXTRA_LINK_FLAGS ${CXX_EXTRA_FLAGS} ${CXX_EXTRA_LINK_FLAGS})
 option(USE_TBB "Enable the oneTBB library for *supported* models. Enabling this on models that
                 don't explicitly link against TBB is a no-op, see description of your selected
                 model on how this is used." OFF)
+option(FIND_TBB "Enable the oneTBB library for *supported* models. Enabling this on models that
+                don't explicitly link against TBB is a no-op, see description of your selected
+                model on how this is used." OFF)
 
 option(FETCH_TBB "Fetch (download) the oneTBB library for *supported* models. This uses CMake's
                   FetchContent feature. Specify version by setting FETCH_TBB_VERSION" OFF)
