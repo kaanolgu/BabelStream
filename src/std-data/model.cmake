@@ -21,16 +21,11 @@ register_flag_optional(NVHPC_OFFLOAD
 register_flag_optional(USE_TBB
         "No-op if ONE_TBB_DIR is set. Link against an in-tree oneTBB via FetchContent_Declare, see top level CMakeLists.txt for details."
         "OFF")
-register_flag_optional(FIND_TBB
+register_flag_optional(SPACK_TBB
         "This option makes sure that while installing with Spack, the intel-tbb package is automatically picked up by Spack. Advised to use while using Spack package.
         
         The TBB_ROOT also needs to be set from the Spack package with this option"
         "OFF")
-
-register_flag_optional(ONE_TBB_DIR
-        "Absolute path to oneTBB (with header `onetbb/tbb.h`) distribution, the directory should contain at least `include/` and `lib/.
-         If unspecified, the system TBB (with header `tbb/tbb.h`) will be used via CMake's find_package(TBB)." 
-        "")
 register_flag_optional(USE_ONEDPL
         "Link oneDPL which implements C++17 executor policies (via execution_policy_tag) for different backends.
 
@@ -51,9 +46,9 @@ macro(setup)
         register_append_cxx_flags(ANY ${NVHPC_FLAGS})
         register_append_link_flags(${NVHPC_FLAGS})
     endif ()
-    if (FIND_TBB)
+    if (SPACK_TBB)
         find_package(TBB REQUIRED)
-        set(TBB_ROOT "${ONE_TBB_DIR}")
+        set(TBB_ROOT "${SPACK_TBB}")
     endif ()
     if (USE_TBB)
         register_link_library(TBB::tbb)
