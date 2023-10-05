@@ -26,6 +26,11 @@ register_flag_optional(FIND_TBB
         
         The TBB_ROOT also needs to be set from the Spack package with this option"
         "OFF")
+
+register_flag_optional(ONE_TBB_DIR
+        "Absolute path to oneTBB (with header `onetbb/tbb.h`) distribution, the directory should contain at least `include/` and `lib/.
+         If unspecified, the system TBB (with header `tbb/tbb.h`) will be used via CMake's find_package(TBB)." 
+        "")
 register_flag_optional(USE_ONEDPL
         "Link oneDPL which implements C++17 executor policies (via execution_policy_tag) for different backends.
 
@@ -48,6 +53,7 @@ macro(setup)
     endif ()
     if (FIND_TBB)
         find_package(TBB REQUIRED)
+        set(TBB_ROOT "${ONE_TBB_DIR}")
     endif ()
     if (USE_TBB)
         register_link_library(TBB::tbb)
