@@ -147,13 +147,11 @@ macro(setup)
         register_definitions(OMP_TARGET_GPU)
         separate_arguments(OFFLOAD_FLAGS)
         set(OMP_FLAGS ${OFFLOAD_FLAGS})
-        message(STATUS "OMP SET CXX  flags : ${OMP_FLAGS}")
     elseif ((DEFINED OFFLOAD) AND OFFLOAD_FLAGS)
         # offload but OFFLOAD_FLAGS overrides
         register_definitions(OMP_TARGET_GPU)
         separate_arguments(OFFLOAD_FLAGS)
-        list(OMP_FLAGS APPEND ${OFFLOAD_FLAGS})
-        message(STATUS "OMP ELSE CXX  flags : ${OMP_FLAGS}")
+        set(OMP_FLAGS ${OFFLOAD_FLAGS})
     else ()
 
         # handle the vendor:arch value
