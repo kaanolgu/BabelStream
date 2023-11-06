@@ -26,10 +26,8 @@ class Babelstream(CMakePackage, CudaPackage, ROCmPackage, MakefilePackage):
     homepage = "https://github.com/UoB-HPC/BabelStream"
     # url = "https://github.com/UoB-HPC/BabelStream/archive/refs/tags/v4.0.tar.gz"
     # git = "https://github.com/UoB-HPC/BabelStream.git"
-    git = "https://github.com/kaanolgu/BabelStream.git"
-    version(
-        "4.0", sha256="a9cd39277fb15d977d468435eb9b894f79f468233f0131509aa540ffda4f5953"
-    )
+    git = "https://github.com/UoB-HPC/BabelStream.git"
+
     version("main", branch="main")
     version("develop", branch="develop")
     version("option_for_vec", branch="option_for_vec")
