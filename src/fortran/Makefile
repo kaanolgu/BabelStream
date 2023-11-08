@@ -8,12 +8,12 @@ else ifeq ($(COMPILER),amd)
     include make.inc.amd
 else ifeq ($(COMPILER),arm)
     include make.inc.arm
-else ifeq ($(COMPILER),cray)
-    include make.inc.cray
+else ifeq ($(COMPILER),cce)
+    include make.inc.cce
 else ifeq ($(COMPILER),fj)
     include make.inc.fj
 else
-    $(info Set COMPILER={nvhpc,oneapi,amd,arm,cray,fj,gcc}. Default is gcc.)
+    $(info Set COMPILER={nvhpc,oneapi,amd,arm,cce,fj,gcc}. Default is gcc.)
     include make.inc.gcc
     COMPILER=gcc
 endif
