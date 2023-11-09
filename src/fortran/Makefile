@@ -9,7 +9,7 @@ else ifeq ($(COMPILER),amd)
 else ifeq ($(COMPILER),arm)
     include make.inc.arm
 else ifeq ($(COMPILER),cce)
-    include make.inc.cce
+    include make.inc.cray
 else ifeq ($(COMPILER),fj)
     include make.inc.fj
 else
