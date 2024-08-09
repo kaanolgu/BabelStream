@@ -204,7 +204,6 @@ void getDeviceList(void)
   // Ask SYCL runtime for all devices in system
   // devices = sycl::device::get_devices();
   auto platforms = sycl::platform::get_platforms();
-  devices = platforms.get_devices();
     for (auto& p : platforms) {
         std::cout << p.get_info<sycl::info::platform::version>() << std::endl;
         std::cout << p.get_info<sycl::info::platform::name>() << std::endl;
