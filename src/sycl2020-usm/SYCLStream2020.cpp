@@ -21,9 +21,9 @@ SYCLStream<T>::SYCLStream(const size_t ARRAY_SIZE, const int device_index)
   if (!cached)
     getDeviceList();
 
-  if (device_index >= devices.size())
-    throw std::runtime_error("Invalid device index");
-
+  // if (device_index >= devices.size())
+  //   throw std::runtime_error("Invalid device index");
+  getDeviceList();
   sycl::device dev = devices[device_index];
 
   // Print out device information
