@@ -211,7 +211,7 @@ void getDeviceList(void)
         auto dev = p.get_devices();
         std::cout << "Platform has: " << dev.size() << " devices\n";
     }
-    
+  devices = sycl::device::get_devices();  
   cached = true;
 }
 
