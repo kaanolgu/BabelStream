@@ -24,6 +24,14 @@ SYCLStream<T>::SYCLStream(const size_t ARRAY_SIZE, const int device_index)
   // if (device_index >= devices.size())
   //   throw std::runtime_error("Invalid device index");
   std::cout << "TEST" << std::endl;
+    auto platforms = sycl::platform::get_platforms();
+    for (auto& p : platforms) {
+        std::cout << p.get_info<sycl::info::platform::version>() << std::endl;
+        std::cout << p.get_info<sycl::info::platform::name>() << std::endl;
+        std::cout << p.get_info<sycl::info::platform::vendor>() << std::endl;
+        auto dev = p.get_devices();
+        std::cout << "Platform has: " << dev.size() << " devices\n";
+    }
   getDeviceList();
   sycl::device dev = devices[device_index];
 
