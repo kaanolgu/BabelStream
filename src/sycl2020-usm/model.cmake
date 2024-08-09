@@ -3,7 +3,7 @@ register_flag_optional(CMAKE_CXX_COMPILER
         "Any CXX compiler that is supported by CMake detection, this is used for host compilation when required by the SYCL compiler"
         "c++")
 
-register_flag_required(SYCL_COMPILER
+register_flag_optional(SYCL_COMPILER
         "Compile using the specified SYCL compiler implementation
         Supported values are
            ONEAPI-ICPX  - icpx as a standalone compiler
